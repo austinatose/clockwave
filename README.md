@@ -1,2 +1,1 @@
-# wavesimulator
- Wave simulator made wih p5.js
+Visualisation inspired by "A Million Times at Changi"
