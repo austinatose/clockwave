@@ -17,5 +17,9 @@ class Clock {
         fill(255);
         ellipse(this.position.x, this.position.y, this.radius * 2);
     }
+
+    setRotSpeed(speed) {
+        this.angularVelocity = speed;
+    }
   }
   
