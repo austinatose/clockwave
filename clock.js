@@ -12,7 +12,7 @@ class Clock {
     }
 
     display() {
-        stroke(0);
+        stroke(255);
         strokeWeight(2);
         fill(255);
         ellipse(this.position.x, this.position.y, this.radius * 2);
