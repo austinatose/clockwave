@@ -31,11 +31,11 @@ function draw() {
 //detect keypress
 
 function keyPressed() {
-  if (keyCode === 49) {
+  if (keyCode === 49) { // 1 : normal perlin
     resetDefault();
     console.log(1);
     mode = 0;
-  } else if (keyCode === 50) {
+  } else if (keyCode === 50) { // 2 : mirrored perlin
     resetDefault();
     console.log(2);
     mode = 1;
