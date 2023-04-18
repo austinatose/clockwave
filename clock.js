@@ -37,5 +37,10 @@ class Clock {
     line(0, 0, this.radius * sin(this.angle1), this.radius * cos(this.angle1));
     line(0, 0, this.radius * sin(this.angle2), this.radius * cos(this.angle2));
   }
+
+  setDefault() {
+    this.angle1 = 0;
+    this.angle2 = 0;
+  }
 }
   
