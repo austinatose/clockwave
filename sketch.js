@@ -26,6 +26,8 @@ function draw() {
     normalPerlin();
   else if (mode == 1)
     mirroredPerlin();
+  else if (mode == 2)
+    test();
 }
 
 //detect keypress
@@ -33,12 +35,15 @@ function draw() {
 function keyPressed() {
   if (keyCode === 49) { // 1 : normal perlin
     resetDefault();
-    console.log(1);
+    console.log(0);
     mode = 0;
   } else if (keyCode === 50) { // 2 : mirrored perlin
     resetDefault();
-    console.log(2);
+    console.log(1);
     mode = 1;
+  } else if (keyCode === 51) { // 3 : test
+    resetDefault(2);
+    mode = 2;
   }
 }
 
@@ -76,6 +81,17 @@ function mirroredPerlin() {
       Clock3.setRotSpeed(-noise(i * noiseMult, j * noiseMult), noise(i * noiseMult, j * noiseMult));
       Clock4.setRotSpeed(-noise(i * noiseMult, j * noiseMult), noise(i * noiseMult, j * noiseMult));
       Clock1.update(); Clock2.update(); Clock3.update(); Clock4.update();
+    }
+  }
+}
+
+function test() {
+  for (let i = 0; i < 36; i++) {
+    for (let j = 0; j < 14; j++) {
+      currClock = clockArr[i][j];
+      currClock.display();
+      currClock.setRotSpeed(map(noise(i * noiseMult, j * noiseMult), 0, 1, -1.5, 1.5), -map(noise(i * noiseMult, j * noiseMult), 0, 1, -1.5, 1.5));
+      currClock.update();
     }
   }
 }
