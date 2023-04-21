@@ -33,7 +33,9 @@ class Clock {
 
   update() {
     this.angle1 += this.angularVelocity1;
-    this.angle2 += this.angularVelocity2
+    this.angle2 += this.angularVelocity2;
+    if (this.angle1 >= 360) this.angle1 -= 360;
+    if (this.angle1 >= 360) this.angle1 -= 360;
     line(0, 0, this.radius * sin(this.angle1), this.radius * cos(this.angle1));
     line(0, 0, this.radius * sin(this.angle2), this.radius * cos(this.angle2));
   }
@@ -41,6 +43,13 @@ class Clock {
   setDefault() {
     this.angle1 = 0;
     this.angle2 = 0;
+  }
+
+  stopAtOrigin() {
+    if (this.angle1 === 0)
+      this.angularVelocity1 = 0;
+    if (this.angle2 === 0)
+      this.angularVelocity2 = 0;
   }
 }
   
