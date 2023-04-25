@@ -46,10 +46,12 @@ class Clock {
   }
 
   stopAtOrigin() {
-    if (this.angle1 === 0)
-      this.angularVelocity1 = 0;
-    if (this.angle2 === 0)
-      this.angularVelocity2 = 0;
+    if (this.angle1 = 0)
+      {this.angularVelocity1 = 0; this.angle1 = 0;}
+    else this.angularVelocity1 = 1;
+    if (this.angle2 = 0)
+      {this.angularVelocity2 = 0; this.angle2 = 0;}
+    else this.angularVelocity2 = 1;
   }
 }
   

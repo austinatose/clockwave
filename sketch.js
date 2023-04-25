@@ -1,7 +1,7 @@
 // 14 * 36 grid of clocks
 
 let clockArr = [];
-let noiseMult = 0.02
+let noiseMult = 0.02;
 
 function setup() {
   createCanvas(1285, 515); // each clock is 30*30, gap of 5, ends are 20
@@ -28,6 +28,8 @@ function draw() {
     mirroredPerlin();
   else if (mode == 2)
     resetDefaultSlowly();
+  else if (mode == 3)
+    maintainPattern();
 }
 
 //detect keypress
@@ -39,8 +41,10 @@ function keyPressed() {
   } else if (keyCode === 50) { // 2 : mirrored perlin
     resetDefault();
     mode = 1;
-  } else if (keyCode === 51) { // 3 : test
+  } else if (keyCode === 51) { // 3 : reset slowly
     mode = 2;
+  } else if (keyCode === 48) { // 0 : maintain
+    mode = 3;
   }
 }
 
@@ -54,11 +58,19 @@ function resetDefault() {
   }
 }
 
+function maintainPattern() {
+  for (let i = 0; i < 36; i++) {
+    for (let j = 0; j < 14; j++) {
+      clockArr[i][j].display();
+      clockArr[i][j].update();
+    }
+  }
+}
+
 function resetDefaultSlowly() {
   for (let i = 0; i < 36; i++) {
     for (let j = 0; j < 14; j++) {
       clockArr[i][j].display();
-      clockArr[i][j].setRotSpeed(1, -1);
       clockArr[i][j].stopAtOrigin();
       clockArr[i][j].update();
     }
