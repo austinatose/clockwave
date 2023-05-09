@@ -70,9 +70,12 @@ function maintainPattern() {
 function resetDefaultSlowly() {
   for (let i = 0; i < 36; i++) {
     for (let j = 0; j < 14; j++) {
-      clockArr[i][j].display();
-      clockArr[i][j].stopAtOrigin();
-      clockArr[i][j].update();
+      currClock = clockArr[i][j];
+      currClock.display();
+      currClock.checkStop();
+      if (currClock.angle1 != 0) currClock.angularVelocity1 = 1;
+      if (currClock.angle2 != 0) currClock.angularVelocity2 = -1;
+      currClock.update();
     }
   }
 }

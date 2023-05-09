@@ -21,8 +21,8 @@ class Clock {
     fill(255);
     ellipse(0, 0, this.radius * 2);
     stroke(0);
-    line(0, 0, this.radius * sin(this.angle1), this.radius * cos(this.angle1));
-    line(0, 0, this.radius * sin(this.angle2), this.radius * cos(this.angle2));
+    line(0, 0, this.radius * sin(this.angle1), this.radius * cos(this.angle1)); //line 1
+    line(0, 0, this.radius * sin(this.angle2), this.radius * cos(this.angle2)); // line 2
     pop();
   }
 
@@ -34,8 +34,10 @@ class Clock {
   update() {
     this.angle1 += this.angularVelocity1;
     this.angle2 += this.angularVelocity2;
-    if (this.angle1 >= 360) this.angle1 -= 360;
-    if (this.angle1 >= 360) this.angle1 -= 360;
+    if (this.angle1 > 360) this.angle1 -= 360;
+    if (this.angle2 > 360) this.angle2 -= 360;
+    if (this.angle1 < 0) this.angle1 += 360;
+    if (this.angle2 < 0) this.angle2 += 360;
     line(0, 0, this.radius * sin(this.angle1), this.radius * cos(this.angle1));
     line(0, 0, this.radius * sin(this.angle2), this.radius * cos(this.angle2));
   }
@@ -45,13 +47,13 @@ class Clock {
     this.angle2 = 0;
   }
 
-  stopAtOrigin() {
-    if (this.angle1 = 0)
-      {this.angularVelocity1 = 0; this.angle1 = 0;}
-    else this.angularVelocity1 = 1;
-    if (this.angle2 = 0)
-      {this.angularVelocity2 = 0; this.angle2 = 0;}
-    else this.angularVelocity2 = 1;
+  checkStop() {
+    if (this.angle1 >= 358 || this.angle1 <= 0) {
+      this.angularVelocity1 = 0; this.angle1 = 0;
+    }
+    if (this.angle2 >= 358 || this.angle2 <= 0) {
+      this.angularVelocity2 = 0; this.angle2 = 0;
+    }
   }
 }
   
