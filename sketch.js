@@ -39,7 +39,7 @@ function keyPressed() {
     resetDefault();
     mode = 0;
   } else if (keyCode === 50) { // 2 : mirrored perlin
-    resetDefault();
+    mirrorMode();
     mode = 1;
   } else if (keyCode === 51) { // 3 : reset slowly
     mode = 2;
@@ -91,7 +91,22 @@ function normalPerlin() {
   }
 }
 
-function mirroredPerlin() {
+function mirrorMode() {
+  for (let i = 0; i < 18; i++) {
+    for (let j = 0; j < 7; j++) {
+      Clock1 = clockArr[i][j];
+      Clock2 = clockArr[35 - i][j];
+      Clock3 = clockArr[i][13 - j];
+      Clock4 = clockArr[35 - i][13 - j];
+      Clock1.angle1 = 225; Clock1.angle2 = 225;
+      Clock2.angle1 = 135; Clock2.angle2 = 135;
+      Clock3.angle1 = 315; Clock3.angle2 = 315;
+      Clock4.angle1 = 45; Clock4.angle2 = 45;
+    }
+  }
+}
+
+function mirroredPerlin() { // rework
   for (let i = 0; i < 18; i++) {
     for (let j = 0; j < 7; j++) {
       Clock1 = clockArr[i][j];
@@ -101,8 +116,8 @@ function mirroredPerlin() {
       Clock1.display(); Clock2.display(); Clock3.display(); Clock4.display();
       Clock1.setRotSpeed(noise(i * noiseMult, j * noiseMult), -noise(i * noiseMult, j * noiseMult));
       Clock2.setRotSpeed(noise(i * noiseMult, j * noiseMult), -noise(i * noiseMult, j * noiseMult));
-      Clock3.setRotSpeed(-noise(i * noiseMult, j * noiseMult), noise(i * noiseMult, j * noiseMult));
-      Clock4.setRotSpeed(-noise(i * noiseMult, j * noiseMult), noise(i * noiseMult, j * noiseMult));
+      Clock3.setRotSpeed(noise(i * noiseMult, j * noiseMult), -noise(i * noiseMult, j * noiseMult));
+      Clock4.setRotSpeed(noise(i * noiseMult, j * noiseMult), -noise(i * noiseMult, j * noiseMult));
       Clock1.update(); Clock2.update(); Clock3.update(); Clock4.update();
     }
   }
