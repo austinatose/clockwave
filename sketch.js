@@ -20,7 +20,13 @@ let mode = 0;
 
 function draw() {
   background(243, 243, 243);
+
   // if 1 key pressed, call normalPerlin()
+  // if 2 key pressed, call mirroredPerlin()
+  // if 3 key pressed, call resetDefaultSlowly()
+  // if 0 key pressed, call maintainPattern()
+
+  // modes are workaround to calling function only once in draw()
 
   if (mode == 0)
     normalPerlin();
@@ -50,6 +56,8 @@ function keyPressed() {
 
 // clock modes
 
+
+// call-once functions to set clock starting positions
 function resetDefault() {
   for (let i = 0; i < 36; i++) {
     for (let j = 0; j < 14; j++) {
@@ -58,6 +66,22 @@ function resetDefault() {
   }
 }
 
+function mirrorMode() {
+  for (let i = 0; i < 18; i++) {
+    for (let j = 0; j < 7; j++) {
+      Clock1 = clockArr[i][j];
+      Clock2 = clockArr[35 - i][j];
+      Clock3 = clockArr[i][13 - j];
+      Clock4 = clockArr[35 - i][13 - j];
+      Clock1.angle1 = 225; Clock1.angle2 = 225;
+      Clock2.angle1 = 135; Clock2.angle2 = 135;
+      Clock3.angle1 = 315; Clock3.angle2 = 315;
+      Clock4.angle1 = 45; Clock4.angle2 = 45;
+    }
+  }
+}
+
+// call-every-frame functions
 function maintainPattern() {
   for (let i = 0; i < 36; i++) {
     for (let j = 0; j < 14; j++) {
@@ -80,6 +104,7 @@ function resetDefaultSlowly() {
   }
 }
 
+// perlin noise functions
 function normalPerlin() {
   for (let i = 0; i < 36; i++) {
     for (let j = 0; j < 14; j++) {
@@ -87,21 +112,6 @@ function normalPerlin() {
       currClock.display();
       currClock.setRotSpeed(noise(i * noiseMult, j * noiseMult), -noise(i * noiseMult, j * noiseMult));
       currClock.update();
-    }
-  }
-}
-
-function mirrorMode() {
-  for (let i = 0; i < 18; i++) {
-    for (let j = 0; j < 7; j++) {
-      Clock1 = clockArr[i][j];
-      Clock2 = clockArr[35 - i][j];
-      Clock3 = clockArr[i][13 - j];
-      Clock4 = clockArr[35 - i][13 - j];
-      Clock1.angle1 = 225; Clock1.angle2 = 225;
-      Clock2.angle1 = 135; Clock2.angle2 = 135;
-      Clock3.angle1 = 315; Clock3.angle2 = 315;
-      Clock4.angle1 = 45; Clock4.angle2 = 45;
     }
   }
 }

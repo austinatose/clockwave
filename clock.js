@@ -42,6 +42,8 @@ class Clock {
     line(0, 0, this.radius * sin(this.angle2), this.radius * cos(this.angle2));
   }
 
+  // object functions in here instead of sketch.js to make life easier
+
   setDefault() {
     this.angle1 = 0;
     this.angle2 = 0;
@@ -56,4 +58,3 @@ class Clock {
     }
   }
 }
-  
